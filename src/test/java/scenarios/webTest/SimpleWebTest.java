@@ -27,6 +27,7 @@ public class SimpleWebTest extends Hooks {
         new MainPage(getDriver())
                 .openPage(SUT)
                 .checkPageIsOpened(BROWSER_TITLE)
-                .checkPageStatusCode();
+                .checkPageStatusCode()
+                .checkTextAtHeaderIsDisplayed();
     }
 }

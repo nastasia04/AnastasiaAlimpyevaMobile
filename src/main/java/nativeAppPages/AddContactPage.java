@@ -1,9 +1,9 @@
 package nativeAppPages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -23,13 +23,13 @@ public class AddContactPage {
 
     // fields and buttons on the page
     @AndroidFindBy(id = "com.example.android.contactmanager:id/accountSpinner")
-    private WebElement targetAccountField;
+    private AndroidElement targetAccountField;
     @AndroidFindBy(id = "com.example.android.contactmanager:id/contactNameEditText")
-    private WebElement contactNameField;
+    private AndroidElement contactNameField;
     @AndroidFindBy(id = "com.example.android.contactmanager:id/contactPhoneEditText")
-    private WebElement contactPhoneField;
+    private AndroidElement contactPhoneField;
     @AndroidFindBy(id = "com.example.android.contactmanager:id/contactEmailEditText")
-    private WebElement contactEmailField;
+    private AndroidElement contactEmailField;
 
     /**
      * Assert that "Target Account" field is visible

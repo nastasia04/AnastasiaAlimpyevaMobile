@@ -12,4 +12,8 @@ public interface PropertyKeyWords {
     String PLATFORM_KEY = "platform";
     String DEVICE_KEY = "device";
     String BROWSER_TITLE_KEY = "browserTitle";
+    String DEVICE_UDID_KEY = "udid";
+    String APP_ACTIVITY_KEY = "appActivity";
+    String APP_PACKAGE_KEY = "appPackage";
 }
+

@@ -39,6 +39,6 @@ public class Hooks {
      */
     @AfterSuite(description = "Close getDriver after tests")
     public void tearDown() throws MalformedURLException {
-        getDriver().quit();
+        getDriver().close();
     }
 }

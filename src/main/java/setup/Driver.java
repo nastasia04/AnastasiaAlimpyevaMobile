@@ -3,6 +3,7 @@ package setup;
 import constants.PlatformsAndBrowsers;
 import constants.PropertyKeyWords;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,6 +29,9 @@ public class Driver implements PlatformsAndBrowsers, PropertyKeyWords {
     private static String TEST_PLATFORM;
     private static String DRIVER;
     private static String DEVICE;
+    private static String DEVICE_UDID;
+    private static String APP_ACTIVITY;
+    private static String APP_PACKAGE;
 
 
     private Driver() {
@@ -47,6 +51,9 @@ public class Driver implements PlatformsAndBrowsers, PropertyKeyWords {
         DRIVER = properties.getPropertyValue(DRIVER_KEY);
         DEVICE = properties.getPropertyValue(DEVICE_KEY);
         BROWSER_TITLE = properties.getPropertyValue(BROWSER_TITLE_KEY);
+        DEVICE_UDID = properties.getPropertyValue(DEVICE_UDID_KEY);
+        APP_ACTIVITY = properties.getPropertyValue(APP_ACTIVITY_KEY);
+        APP_PACKAGE = properties.getPropertyValue(APP_PACKAGE_KEY);
     }
 
     /**
@@ -68,13 +75,15 @@ public class Driver implements PlatformsAndBrowsers, PropertyKeyWords {
             default:
                 throw new IllegalArgumentException("Unknown mobile platform: " + TEST_PLATFORM);
         }
-        capabilities.setCapability(DEVICE_NAME, DEVICE);
+        capabilities.setCapability(UDID, DEVICE_UDID);
         capabilities.setCapability(PLATFORM_NAME, TEST_PLATFORM);
 
         // Setup type of application
         if (AUT != null && SUT == null) {
+            capabilities.setCapability(MobileCapabilityType.APP, new File(AUT).getAbsolutePath());
+            capabilities.setCapability("appActivity", APP_ACTIVITY);
+            capabilities.setCapability("appPackage", APP_PACKAGE);
             // Native:
-            capabilities.setCapability(APP, new File(AUT).getAbsolutePath());
         } else if (SUT != null && AUT == null) {
             // Web:
             capabilities.setCapability(BROWSER_NAME, browserName);
@@ -86,7 +95,7 @@ public class Driver implements PlatformsAndBrowsers, PropertyKeyWords {
         driverSingleton = new AppiumDriver(new URL(DRIVER), capabilities);
         // Set an object to handle timeouts
         if(waitSingleton == null) {
-            waitSingleton = new WebDriverWait(driverSingleton, 10);
+            waitSingleton = new WebDriverWait(driverSingleton, 20);
         }
     }
 

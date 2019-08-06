@@ -1,0 +1,3 @@
+In order to run tests you should type your access token in the following files:
+- src/test/resources/nativeTest.properties
+- src/test/resources/webTest.properties

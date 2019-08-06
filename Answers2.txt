@@ -1,0 +1,10 @@
+4.
+Try to use autoLaunch capability with app as before instead of appPackage and appActivity.
+ Does this approach work?
+
+
+No. I had this error:
+"org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session.
+Please check the server log for more details.
+Original error: {"status":13,"value":{"message":"An unknown server-side error occurred while processing the command.
+Original error: The desired capabilities must include either an app, appPackage or browserName"},"sessionId":null}"

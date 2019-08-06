@@ -1,9 +1,9 @@
 package nativeAppPages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -17,7 +17,7 @@ public class MainPageOfContactManager {
     private AppiumDriver driver;
     // fields and buttons on the page
     @AndroidFindBy(id = "com.example.android.contactmanager:id/addContactButton")
-    private WebElement addButton;
+    private AndroidElement addButton;
 
     public MainPageOfContactManager(AppiumDriver driver) {
         this.driver = driver;
