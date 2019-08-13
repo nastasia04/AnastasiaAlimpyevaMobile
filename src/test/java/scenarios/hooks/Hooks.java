@@ -2,7 +2,7 @@ package scenarios.hooks;
 
 import constants.PropertiesPath;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeGroups;
 import setup.TestProperties;
 
 import java.io.IOException;
@@ -15,21 +15,19 @@ import static setup.Driver.*;
  */
 
 public class Hooks {
-    private PropertiesPath path;
-
-    public Hooks(PropertiesPath path) {
-        this.path = path;
-    }
-
     /**
      * Loads and reads properties.
      *
      * @throws IOException If path to property file is incorrect.
      */
-    @BeforeSuite(description = "Prepare getDriver to run tests")
-    public void setUp() throws IOException {
-        setProperties(new TestProperties(path).loadProperties());
-        prepareDriver();
+    @BeforeGroups(description = "Prepare getDriver to run tests", groups = "native")
+    public void setUpNative() throws IOException {
+        prepareDriverAndSetProperties(PropertiesPath.NATIVE);
+    }
+
+    @BeforeGroups(description = "Prepare getDriver to run tests", groups = "web")
+    public void setUpWeb() throws IOException {
+        prepareDriverAndSetProperties(PropertiesPath.WEB);
     }
 
     /**
@@ -37,8 +35,17 @@ public class Hooks {
      *
      * @throws MalformedURLException if URL needed to get getDriver() is incorrect.
      */
-    @AfterSuite(description = "Close getDriver after tests")
+    @AfterSuite(description = "Close getDriver after tests", groups = {"native", "web"})
     public void tearDown() throws MalformedURLException {
         getDriver().close();
+    }
+    /**
+     * Prepare driver
+     *
+     * @throws IOException If path to property file is incorrect.
+     */
+    private void prepareDriverAndSetProperties (PropertiesPath path) throws IOException{
+        setProperties(new TestProperties(path).loadProperties());
+        prepareDriver();
     }
 }

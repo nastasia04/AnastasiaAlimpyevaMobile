@@ -1,9 +1,7 @@
 package scenarios.nativeTest;
 
-import constants.PropertiesPath;
 import nativeAppPages.MainPageOfContactManager;
 import org.testng.annotations.Test;
-import scenarios.hooks.Hooks;
 
 import java.net.MalformedURLException;
 
@@ -12,12 +10,8 @@ import static setup.Driver.getDriver;
 /**
  * Tests for native application.
  */
-public class SimpleNativeTest extends Hooks {
-
-    public SimpleNativeTest() {
-
-        super(PropertiesPath.NATIVE);
-    }
+@Test(groups = "native")
+public class SimpleNativeTest {
 
     /**
      * Clicks "Add contact" and checks if form is opened

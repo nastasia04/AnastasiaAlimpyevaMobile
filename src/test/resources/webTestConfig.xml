@@ -3,11 +3,15 @@
 <suite name="Web Test Suite" verbose="1">
 
     <test name="Web Test">
-
+        <groups>
+            <run>
+                <include name="web" />
+            </run>
+        </groups>
         <classes>
             <class name="scenarios.webTest.SimpleWebTest" />
+            <class name="scenarios.hooks.Hooks" />
         </classes>
-
     </test>
 
 </suite>

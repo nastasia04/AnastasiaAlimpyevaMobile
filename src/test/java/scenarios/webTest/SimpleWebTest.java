@@ -1,8 +1,6 @@
 package scenarios.webTest;
 
-import constants.PropertiesPath;
 import org.testng.annotations.Test;
-import scenarios.hooks.Hooks;
 import webAppPages.MainPage;
 
 import static setup.Driver.*;
@@ -10,12 +8,8 @@ import static setup.Driver.*;
 /**
  * Tests for web application.
  */
-public class SimpleWebTest extends Hooks {
-
-    public SimpleWebTest() {
-        super(PropertiesPath.WEB);
-    }
-
+@Test(groups = "web")
+public class SimpleWebTest {
     /**
      * Opens website and checks that website is successfully opened.
      *
